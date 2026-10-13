@@ -1,49 +1,68 @@
-# Phân tích dữ liệu Dạy và Học AI ở Đại học Việt Nam và Thế giới
+# Phân tích & So sánh Khung Chương trình Đào tạo AI: Đại học Việt Nam và Thế giới
 
-Dự án bài tập giữa kỳ thực hiện trọn vẹn quy trình Phân tích Dữ liệu, kết quả cuối cùng được tổng hợp trực quan thành một **Dashboard tĩnh (HTML)** chạy trực tiếp trên trình duyệt.
+Dự án bài tập giữa kỳ môn Phân tích Dữ liệu. Repository thực hiện trọn vẹn quy trình Data Analysis Pipeline (Thu thập -> Tiền xử lý -> Khai phá -> Trực quan hóa) và xuất kết quả thành một **Dashboard tĩnh (`index.html`)** hiển thị trực tiếp trên trình duyệt.
 
 ---
 
 ## 1. Đặt vấn đề & Chủ đề nghiên cứu
 
 ### 📍 Đặt vấn đề
-Sự bùng nổ của Trí tuệ Nhân tạo (AI) đặt ra thách thức và cơ hội lớn cho giáo dục đại học. Việc so sánh chương trình đào tạo, xu hướng phát triển và mức độ đáp ứng thực tế giữa các trường đại học tại Việt Nam và thế giới giúp nhìn nhận rõ khoảng cách và định hướng cải tiến.
+Trí tuệ Nhân tạo (AI) đang chuyển mình từ một nhánh nghiên cứu chuyên sâu thành hạt nhân của nền kinh tế số. Trước áp lực này, các trường đại học toàn cầu liên tục tái cấu trúc chương trình đào tạo. Việc đối sánh khung chương trình giảng dạy AI tại Việt Nam với các trường đại học hàng đầu thế giới sẽ giúp nhận diện khoảng cách về mặt lý thuyết, thực hành, tốc độ cập nhật công nghệ và định hướng ứng dụng.
 
 ### 🎯 Chủ đề cụ thể
-> **"Dạy và học AI ở đại học Việt Nam và thế giới: So sánh xu hướng, chương trình đào tạo và mức độ đáp ứng nhu cầu thực tế."**
+> **"So sánh Khung chương trình đào tạo & Cấu trúc môn học AI giữa các trường Đại học tại Việt Nam và Thế giới."**
 
 ---
 
-## 2. Công cụ, Thư viện & Cấu trúc Dashboard (File `index.html`)
+## 2. Dữ liệu & Phương pháp thu thập
 
-Dự án sử dụng Python để xử lý dữ liệu và xuất ra một trang dashboard tĩnh độc lập (`index.html`). Khi mở file này bằng trình duyệt web, người dùng có thể tương tác trực tiếp với toàn bộ biểu đồ tổng hợp.
+Dự án khảo sát và phân tích dữ liệu chương trình đào tạo của **20 - 30 trường Đại học** (10-15 trường tại Việt Nam như UET, UIT, HUST, FPT, VinUni... và 10-15 trường thế giới như MIT, Stanford, CMU, NUS, NTU...):
 
-### 🧰 Thư viện sử dụng
-* **Thu thập & Tiền xử lý:** `requests`, `BeautifulSoup`, `pandas`, `numpy` (làm sạch dữ liệu, xử lý missing values, tạo cột đặc trưng).
-* **Trực quan hóa & Xuất Dashboard:** `plotly` (hoặc `altair`/`bokeh`) để tạo các biểu đồ tương tác nhúng vào trang HTML.
-* **Hỗ trợ bổ trợ:** `seaborn`, `matplotlib`, `wordcloud`, `networkx`, `folium`.
-
-### 📊 Các dạng biểu đồ tích hợp trên Dashboard (`index.html`)
-1. **Phân bố dữ liệu:** Histogram, Boxplot, Violin plot (thống kê phân phối điểm số, thời lượng khóa học).
-2. **Xu hướng theo thời gian:** Line chart và Area chart (sự phát triển số lượng môn học AI qua các năm).
-3. **Mối quan hệ & Hồi quy:** Scatter plot kết hợp đường hồi quy (tương quan giữa học phí/thời gian học và mức độ hiệu quả).
-4. **Ma trận tương quan:** Heatmap tương quan giữa các biến số chính.
-5. **Cấu trúc & Không gian:** Treemap / Sunburst hoặc Bản đồ tương tác (phân bổ trung tâm đào tạo AI).
-6. **Phân tích văn bản:** WordCloud / Network Graph (từ khóa công nghệ AI phổ biến).
-7. **Biểu đồ tương tác:** Tối thiểu 3 biểu đồ tương tác trực tiếp (Filter, Hover, Zoom) tích hợp sẵn trên giao diện HTML.
+* **Thu thập dữ liệu:** Sử dụng `requests` + `BeautifulSoup` cào dữ liệu syllabus/danh mục môn học từ website các trường ĐH, kết hợp khai thác `Coursera API` / `edX API`.
+* **Tiền xử lý & Chuẩn hóa:** `pandas`, `numpy`
+  * Chuẩn hóa đơn vị tín chỉ/thời lượng học.
+  * Xử lý giá trị thiếu (missing values) ở các trường thông tin syllabus.
+  * **Feature Engineering:** Tạo các cột mới như Tỷ lệ thực hành (`practical_ratio`), Phân loại nhóm môn (`ai_category`), Số lượng môn tiên quyết (`prereq_count`).
 
 ---
 
-## 3. Kết luận & Insight rút ra
+## 3. Công cụ & Hệ thống Biểu đồ tích hợp (`index.html`)
 
-Từ Dashboard trực quan trên `index.html`, các kết luận chính được rút ra:
-* **Khác biệt về chương trình:** Các trường đại học trên thế giới có xu hướng tập trung mạnh vào các môn chuyên sâu và ứng dụng thực tế sớm hơn, trong khi đại học Việt Nam đang trong quá trình chuẩn hóa khối kiến thức nền tảng.
-* **Tốc độ phát triển:** Số lượng khóa học AI ghi nhận sự tăng trưởng mạnh mẽ trong giai đoạn gần đây, phản ánh nhu cầu cấp thiết của thị trường lao động công nghệ.
-* **Từ khóa trọng tâm:** Các công nghệ như Machine Learning, Deep Learning, và Large Language Models chiếm tỷ trọng áp đảo trong từ vựng chuyên ngành được giảng dạy.
+Toàn bộ kết quả được tổng hợp thành trang **Dashboard tĩnh (`index.html`)** tích hợp các biểu đồ tương tác cao.
+
+### 🧰 Thư viện chính
+* **Web Scraping & Processing:** `requests`, `beautifulsoup4`, `pandas`, `numpy`
+* **Visualization:** `plotly`, `seaborn`, `matplotlib`, `folium`, `wordcloud`, `networkx`
+
+### 📊 Danh mục Biểu đồ triển khai (Đáp ứng đầy đủ yêu cầu đề bài)
+
+| STT | Dạng biểu đồ | Nội dung phân tích | Thư viện |
+| :---: | :--- | :--- | :--- |
+| **1** | **Boxplot / Violin Plot** | Phân bố số tín chỉ và tỷ lệ thời lượng thực hành giữa ĐH Việt Nam vs Thế giới. | `seaborn` / `plotly` |
+| **2** | **Line / Area Chart** | Xu hướng tích hợp các môn AI mới (GenAI, LLM, MLOps) vào giảng dạy theo thời gian (2018 - 2026). | `plotly` |
+| **3** | **Scatter Plot + Hồi quy** | Tương quan giữa **Số môn tiên quyết** và **Tỷ lệ bài tập lớn/thực hành** của môn học. | `seaborn` / `plotly` |
+| **4** | **Heatmap Tương quan** | Mật độ phân bổ các nhóm môn học (`Math/Foundations`, `Classic ML`, `Deep Learning`, `Ethics`) theo Trường/Quốc gia. | `seaborn` / `plotly` |
+| **5** | **Treemap / Sunburst & Bản đồ** | • **Treemap/Sunburst:** Tỷ trọng phân cấp các nhóm kiến thức trong ngành AI.<br>• **Folium Map:** Bản đồ không gian phân bố các đại học khảo sát. | `plotly`, `folium` |
+| **6** | **WordCloud & Network Graph** | • **WordCloud:** Từ khóa công nghệ/thư viện nổi bật trong syllabus.<br>• **Network Graph:** Mạng lưới liên kết giữa các môn học và môn tiên quyết. | `wordcloud`, `networkx` |
+| **⭐** | **Biểu đồ tương tác (3+)** | Sunburst phân cấp, Scatter plot hover chi tiết môn học, và Bản đồ Folium tương tác nhúng trực tiếp trên Dashboard. | `plotly`, `folium` |
 
 ---
 
-## 🚀 Hướng dẫn mở và xem báo cáo
-1. Clone hoặc tải repository về máy.
-2. Mở thư mục dự án và tìm file **`index.html`**.
-3. Nhấp đúp chuột vào file `index.html` (hoặc kéo thả vào trình duyệt Chrome/Edge/Firefox bất kỳ) để trải nghiệm Dashboard tương tác hoàn chỉnh.
+## 4. Insight chính & Data Storytelling
+
+Trang Dashboard trình bày báo cáo 1 trang theo mạch kể chuyện dữ liệu (Data Storytelling):
+
+1. **Trọng tâm Đào tạo:** Đại học Việt Nam chú trọng nền tảng Toán và Cơ sở Khoa học Máy tính vững chắc, trong khi các trường thế giới cân bằng sớm hơn giữa lý thuyết và các môn ứng dụng chuyên sâu.
+2. **Mạng lưới Môn học (Network Dependency):** Mạng lưới môn tiên quyết tại ĐH Thế giới có tính linh hoạt cao hơn, cho phép sinh viên tiếp cận các công cụ/ngôn ngữ lập trình AI từ năm 1–2.
+3. **Tốc độ Cập nhật Công nghệ:** Các môn học về Large Language Models (LLMs) và Đạo đức AI (AI Ethics) bùng nổ tại các trường quốc tế từ 2023, và đang bắt đầu được tích hợp mạnh mẽ vào chương trình tại Việt Nam từ giai đoạn 2024-2026.
+4. **Định hướng Cải tiến:** Đề xuất tăng tỷ lệ đồ án thực tế (**Practical Ratio**) và mở rộng các môn học liên ngành trong khung chương trình đại học tại Việt Nam.
+
+
+---
+
+## 🚀 Hướng dẫn mở và xem Báo cáo Dashboard
+
+1. **Clone repository:**
+   ```bash
+   git clone https://github.com/TuVu5463/AI_Teaching_Learning_Analysis
+   cd AI_Teaching_Learning_Analysis
